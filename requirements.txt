@@ -1,0 +1,7 @@
+Flask
+google-generativeai
+Pillow
+requests
+numpy
+Werkzeug
+gunicorn

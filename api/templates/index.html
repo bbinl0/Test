@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image & Text API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .endpoint {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .endpoint:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Image & Text API</h1>
+        <p>Welcome to the AI Image Analysis & Generation API powered by Google Gemini.</p>
+        <p>This API provides endpoints for image analysis, text-to-image generation, image editing, and multi-image composition.</p>
+
+        <h2>API Endpoints</h2>
+
+        <div class="endpoint">
+            <h3><code>GET /health</code></h3>
+            <p>Check the health and capabilities of the API.</p>
+            <pre><code>curl -X GET /health</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>GET /api</code></h3>
+            <p>View complete API documentation.</p>
+            <pre><code>curl -X GET /api</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /ask</code></h3>
+            <p>Answer text questions using Gemini AI.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "question": "Your question here",
+    "model": "gemini-1.5-flash" (optional, default: gemini-1.5-flash)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "question": "What is the capital of France?" }' /ask</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /analyze_base64</code></h3>
+            <p>Analyze Base64 encoded images.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "image": "base64_encoded_image_string",
+    "extract_masks": false (optional)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "image": "data:image/png;base64,iVBORw0KGgo...", "extract_masks": true }' /analyze_base64</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /analyze_url</code></h3>
+            <p>Analyze images from URLs.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "url": "image_url_string",
+    "extract_masks": false (optional)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "url": "https://example.com/image.jpg" }' /analyze_url</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /generate_text_to_image</code></h3>
+            <p>Generate images from text prompts.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "prompt": "text_description",
+    "style": "photorealistic" (optional),
+    "aspect_ratio": "1:1" (optional)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "prompt": "A cat sitting on a moon", "style": "cartoon" }' /generate_text_to_image</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /edit_image</code></h3>
+            <p>Edit images using text prompts.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "prompt": "edit_description",
+    "image": "base64_encoded_image",
+    "style": "photorealistic" (optional),
+    "aspect_ratio": "1:1" (optional),
+    "edit_strength": 0.7 (optional)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "prompt": "Make the cat wear a hat", "image": "base64_image_data" }' /edit_image</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <h3><code>POST /compose_images</code></h3>
+            <p>Compose multiple images into one based on text prompt.</p>
+            <p><strong>Payload:</strong></p>
+            <pre><code>{
+    "prompt": "composition_description",
+    "images": ["base64_image_1", "base64_image_2"],
+    "style": "photorealistic" (optional),
+    "aspect_ratio": "1:1" (optional)
+}</code></pre>
+            <p><strong>Example:</strong></p>
+            <pre><code>curl -X POST -H "Content-Type: application/json" -d '{ "prompt": "Combine these into a futuristic city", "images": ["base64_image_1", "base64_image_2"] }' /compose_images</code></pre>
+        </div>
+
+        <p>For more details, refer to the <code>/api</code> endpoint.</p>
+    </div>
+</body>
+</html>
