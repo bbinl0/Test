@@ -1,1 +1,2 @@
-# No external dependencies needed - using only Python standard library
+Flask==2.3.2
+requests==2.31.0
