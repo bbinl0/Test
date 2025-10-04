@@ -1,17 +1,19 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "src": "api/get_user_info.py",
+      "use": "@vercel/python"
     }
   ],
-  "functions": {
-    "api/get_user_info.py": {
-      "runtime": "python@3.9"
+  "routes": [
+    {
+      "src": "/api/get_user_info",
+      "dest": "api/get_user_info.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.html"
     }
-  }
+  ]
 }
