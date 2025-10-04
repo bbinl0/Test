@@ -4,12 +4,16 @@
     {
       "src": "get_user_info.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/get_user_info",
-      "dest": "get_user_info.py:app"
+      "src": "/api/user",
+      "dest": "get_user_info.py"
     },
     {
       "src": "/(.*)",
