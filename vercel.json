@@ -12,7 +12,7 @@
   ],
   "routes": [
     {
-      "src": "/api/user",
+      "src": "/api/get_user_info",
       "dest": "get_user_info.py"
     },
     {
