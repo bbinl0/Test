@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/api/get_user_info",
-      "dest": "api/get_user_info.py"
+      "dest": "api/get_user_info.py:app"
     },
     {
       "src": "/(.*)",
